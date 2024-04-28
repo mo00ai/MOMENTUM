@@ -4,12 +4,32 @@ const toDoInput = toDoForm.querySelector("input");
 const toDoList = document.getElementById("todo-list");
 
 
+
+function deleteToDo(event) {
+    //event.target // 이벤트가 일어나는 대상을 알려줌
+    //console.dir(event.target);
+    //target은 클릭된 html element
+    //클릭된 html 요소엔 하나 이상의 parentElement가 있음
+    //console.dir(event.target.parentElement.innerText);
+
+    const li = event.target.parentElement;
+    li.remove();
+
+}
+
+
 function paintToDo(newTodo) { 
 
     const li = document.createElement("li");
     const span = document.createElement("span");
+    const button = document.createElement("button");
+
+    button.innerText = "X";
+    button.addEventListener("click", deleteToDo);
 
     li.appendChild(span); //li는 span을 자식으로 추가함
+    li.appendChild(button);
+    
     span.innerText = newTodo;
 
     toDoList.appendChild(li);
