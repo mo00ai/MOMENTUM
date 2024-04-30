@@ -3,6 +3,18 @@ const toDoInput = toDoForm.querySelector("input");
 //const toDoInput = document.querySelector("#todo-form");
 const toDoList = document.getElementById("todo-list");
 
+const toDos = [];
+
+function saveToDos() {
+    localStorage.setItem("todos", JSON.stringify(toDos));
+
+    /*
+    JSON.stringify([1,2,3,4]);
+    
+    
+    */
+
+}
 
 
 function deleteToDo(event) {
@@ -44,6 +56,7 @@ function handleToDoSubmit(event) {
     toDoInput.value = "";
     //새로운 text value를 받기 위해
     //text input 다시 공백으로 만들기(입력할 수 있게)
+    toDos.push(newTodo);
     paintToDo(newTodo); // newTodo는 string
 }
 
