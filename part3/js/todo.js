@@ -6,12 +6,25 @@ const toDoList = document.getElementById("todo-list");
 const toDos = [];
 
 function saveToDos() {
+    //toDos array의 내용을 localStorage에 넣기
+    //localStorage는 기본적으로 저장값들을 string으로 저장함
+    //-> 배열로 저장하고 싶음(그게 더 편리하니까)
+    // ------> JSON 사용!!!!!!!!!!!!
+    // String -> array , array -> String
     localStorage.setItem("todos", JSON.stringify(toDos));
 
+
+
     /*
-    JSON.stringify([1,2,3,4]);
-    
-    
+    JSON.stringify();
+    js object나 array 또는 어떤 js 코드건 간에 string으로 만들어줌
+
+    1. JSON.stringify – 객체를 JSON으로 바꿔줍니다.
+    => 객체를 문자열로 바꿔주어요
+
+    2. JSON.parse – JSON을 객체로 바꿔줍니다.
+    => JSON으로 인코딩된 객체(문자열로 바뀐 객체)를 다시 객체로 바꾸어줍니다.(디코딩)
+    dfdf
     */
 
 }
