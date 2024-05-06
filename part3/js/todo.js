@@ -3,6 +3,8 @@ const toDoInput = toDoForm.querySelector("input");
 //const toDoInput = document.querySelector("#todo-form");
 const toDoList = document.getElementById("todo-list");
 
+const TODOS_KEY = "todos";
+
 const toDos = [];
 
 function saveToDos() {
@@ -11,8 +13,8 @@ function saveToDos() {
     //-> 배열로 저장하고 싶음(그게 더 편리하니까)
     // ------> JSON 사용!!!!!!!!!!!!
     // String -> array , array -> String
-    localStorage.setItem("todos", JSON.stringify(toDos));
-
+    localStorage.setItem("todos", JSON.stringify(toDos));// '["a","b","c"]'
+    //localStorage.setItem("todos", toDos);
 
 
     /*
@@ -24,7 +26,8 @@ function saveToDos() {
 
     2. JSON.parse – JSON을 객체로 바꿔줍니다.
     => JSON으로 인코딩된 객체(문자열로 바뀐 객체)를 다시 객체로 바꾸어줍니다.(디코딩)
-    dfdf
+    위에선 stringify로 단순 string이었던 문자를 js object array 로 변환시켜줌
+
     */
 
 }
@@ -71,6 +74,29 @@ function handleToDoSubmit(event) {
     //text input 다시 공백으로 만들기(입력할 수 있게)
     toDos.push(newTodo);
     paintToDo(newTodo); // newTodo는 string
+    saveToDos();
 }
 
 toDoForm.addEventListener("submit", handleToDoSubmit);
+
+function sayHello(item) {
+    console.log("this is the turn of ", item);
+}
+
+
+const savedToDos = localStorage.getItem(TODOS_KEY);
+
+//saved todos value is exist
+if(saveToDos !== null) {
+    const parsedToDos = JSON.parse(savedToDos);
+    /*
+    parsedToDos.array.forEach(element => {
+        
+    });
+    */
+    //each array 꺼내기
+    //parsedToDos.forEach(sayHello());
+
+    parsedToDos.forEach((item) => console.log("this is the turn of ", item));
+
+} 
