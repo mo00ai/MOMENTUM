@@ -5,7 +5,7 @@ const toDoList = document.getElementById("todo-list");
 
 const TODOS_KEY = "todos";
 
-const toDos = [];
+let toDos = [];
 
 function saveToDos() {
     //toDos array의 내용을 localStorage에 넣기
@@ -89,6 +89,9 @@ const savedToDos = localStorage.getItem(TODOS_KEY);
 //saved todos value is exist
 if(saveToDos !== null) {
     const parsedToDos = JSON.parse(savedToDos);
+
+    toDos = parsedToDos;
+
     /*
     parsedToDos.array.forEach(element => {
         
@@ -96,7 +99,9 @@ if(saveToDos !== null) {
     */
     //each array 꺼내기
     //parsedToDos.forEach(sayHello());
+    //parsedToDos.forEach((item) => console.log("this is the turn of ", item));
 
-    parsedToDos.forEach((item) => console.log("this is the turn of ", item));
+    parsedToDos.forEach(paintToDo);
+
 
 } 
