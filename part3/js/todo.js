@@ -1,3 +1,17 @@
+/*
+
+js 메소드
+.forEach
+.filter
+JSON.stringify
+JSON.parse
+
+*/ 
+
+
+
+
+
 const toDoForm = document.getElementById("todo-form");
 const toDoInput = toDoForm.querySelector("input");
 //const toDoInput = document.querySelector("#todo-form");
@@ -43,13 +57,22 @@ function deleteToDo(event) {
     const li = event.target.parentElement;
     li.remove();
 
+    toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+    saveToDos();
+
 }
 
 
 function paintToDo(newTodo) { 
 
     const li = document.createElement("li");
+
+    li.id = newTodo.id;
+
     const span = document.createElement("span");
+    
+    span.innerText = newTodo.text;
+    
     const button = document.createElement("button");
 
     button.innerText = "X";
@@ -57,8 +80,6 @@ function paintToDo(newTodo) {
 
     li.appendChild(span); //li는 span을 자식으로 추가함
     li.appendChild(button);
-    
-    span.innerText = newTodo;
 
     toDoList.appendChild(li);
 }
@@ -72,12 +93,21 @@ function handleToDoSubmit(event) {
     toDoInput.value = "";
     //새로운 text value를 받기 위해
     //text input 다시 공백으로 만들기(입력할 수 있게)
-    toDos.push(newTodo);
-    paintToDo(newTodo); // newTodo는 string
+
+    const newTodoObj = {
+        text: newTodo,
+        id: Date.now()
+    }
+
+    toDos.push(newTodoObj);
+    paintToDo(newTodoObj); // newTodo는 string
     saveToDos();
 }
 
 toDoForm.addEventListener("submit", handleToDoSubmit);
+
+
+
 
 function sayHello(item) {
     console.log("this is the turn of ", item);
@@ -87,7 +117,7 @@ function sayHello(item) {
 const savedToDos = localStorage.getItem(TODOS_KEY);
 
 //saved todos value is exist
-if(saveToDos !== null) {
+if(savedToDos !== null) {
     const parsedToDos = JSON.parse(savedToDos);
 
     toDos = parsedToDos;
@@ -105,3 +135,17 @@ if(saveToDos !== null) {
 
 
 } 
+
+
+
+
+
+function sexyFilter(item) {
+    return item !== 3;
+}
+
+[1,2,3,4].filter(sexyFilter)
+// 함수 sexyFilter의 매개변수에 배열 내 모든 값을 인자값으로 한 번씩 전함
+// ex) sexyFilter(1), sexyFilter(2) ... sexyFilter(4)
+//모든 숫자가 배열에 포함되고 싶으면 함수 sexyFilter는 반드시 모두 true를 리턴해야 됨
+//하지만 특정 값을 배열에서 제외하고 싶다면 그 값의 함수 sexyFilter는 false를 리턴해야 됨
