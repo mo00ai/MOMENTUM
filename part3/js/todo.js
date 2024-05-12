@@ -19,7 +19,7 @@ const toDoList = document.getElementById("todo-list");
 
 const TODOS_KEY = "todos";
 
-let toDos = [];
+const toDos = [];
 
 function saveToDos() {
     //toDos array의 내용을 localStorage에 넣기
@@ -120,7 +120,7 @@ const savedToDos = localStorage.getItem(TODOS_KEY);
 if(savedToDos !== null) {
     const parsedToDos = JSON.parse(savedToDos);
 
-    toDos = parsedToDos;
+//    toDos = parsedToDos;
 
     /*
     parsedToDos.array.forEach(element => {
